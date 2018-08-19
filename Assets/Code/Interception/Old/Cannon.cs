@@ -6,9 +6,9 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Transform m_bulletSpawn = null;
     [SerializeField] private GameObject m_bulletPrefab = null;
 
-    public void FireProjectile(Bullet target)
+    public void FireProjectile(Projectile target)
     {
-        Bullet myProjectile = m_bulletPrefab.GetComponent<Bullet>();
+        Projectile myProjectile = m_bulletPrefab.GetComponent<Projectile>();
         Vector3 relPos = target.transform.position - m_bulletSpawn.position;
         float a = Vector3.Dot(target.Speed * target.Direction, target.Speed * target.Direction) - (myProjectile.Speed * myProjectile.Speed);
 
@@ -50,8 +50,8 @@ public class Cannon : MonoBehaviour
             }
 
             GameObject myProjectileObj = (GameObject) GameObject.Instantiate(m_bulletPrefab, m_bulletSpawn.position, m_bulletSpawn.rotation);
-            myProjectile = myProjectileObj.GetComponent<Bullet>();
-            myProjectile.Direction = ((target.transform.position + (target.Direction * target.Speed * t)) - m_bulletSpawn.transform.position).normalized;
+            myProjectile = myProjectileObj.GetComponent<Projectile>();
+            myProjectile.SetDirection((target.transform.position + (target.Direction * target.Speed * t)) - m_bulletSpawn.transform.position);
         }
     }
 }

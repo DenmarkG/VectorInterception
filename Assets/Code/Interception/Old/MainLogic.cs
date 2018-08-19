@@ -21,7 +21,7 @@ public class MainLogic : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            Bullet bullet = FireProjectile(Input.mousePosition);
+            Projectile bullet = FireProjectile(Input.mousePosition);
             if (m_cannon != null)
             {
                 m_cannon.FireProjectile(bullet);
@@ -29,13 +29,13 @@ public class MainLogic : MonoBehaviour
         }
     }
 
-    Bullet FireProjectile(Vector3 position)
+    Projectile FireProjectile(Vector3 position)
     {
         position.z = cam.nearClipPlane;
         Vector3 worldPos = cam.ScreenToWorldPoint(position);
         GameObject bulletObj = (GameObject)GameObject.Instantiate(m_bulletPrefab, worldPos, m_bulletPrefab.transform.rotation);
-        Bullet bullet = bulletObj.GetComponent<Bullet>();
-        bullet.Direction = (worldPos - this.transform.position).normalized;
+        Projectile bullet = bulletObj.GetComponent<Projectile>();
+        bullet.SetDirection(worldPos - this.transform.position.normalized);
         return bullet;
     }
 }
