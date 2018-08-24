@@ -6,6 +6,7 @@ public abstract class Turret : MonoBehaviour
     [SerializeField] protected Transform _spawnPoint = null;
 
     protected Projectile _target = null;
+
     protected Transform _transform = null;
 
     protected LineRenderer _lineRenderer = null;

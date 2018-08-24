@@ -6,7 +6,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed = 2.5f;
     [SerializeField] private float _lifeSpan = 2f;
 
-	private Transform _transform = null;
+    public Transform Xform => _transform;
+    private Transform _transform = null;
     public Vector3 Direction => _direction;
     private Vector3 _direction = Vector3.zero;
 
@@ -35,8 +36,6 @@ public class Projectile : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-
-        
 
         _lifeSpan -= Time.deltaTime;
         if (_lifeSpan <= 0)
